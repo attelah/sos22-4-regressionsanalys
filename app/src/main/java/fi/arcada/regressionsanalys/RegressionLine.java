@@ -3,6 +3,10 @@ package fi.arcada.regressionsanalys;
 public class RegressionLine {
 
     // deklarera k, m, x  och correlationCoefficient som double
+    double k;
+    double m;
+    double x;
+    double correlationCoefficient;
 
     // Skapa en konstruktor som tar emot data-arrays för x och y
     // Uträkningen för k och m kan ske i konstruktorn m.h.a.
