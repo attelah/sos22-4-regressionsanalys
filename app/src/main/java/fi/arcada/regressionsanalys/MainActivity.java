@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,24 +17,36 @@ public class MainActivity extends AppCompatActivity {
 
     // Deklarera yValue för längd, Denna variabel ska sedan få ett värde som hämtas från en EditText-box i appens GUI
     double yValue;
-
+    double r;
     // Deklarera övriga variabler och objekt du behöver, t.ex. TextViews osv.
+    TextView textView, textMain, textCorr;
+    EditText editNum;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Här kommer som vanligt alla findViewById som behövs
+        editNum = findViewById(R.id.editNum);
+        textView = findViewById(R.id.textView);
+        textMain = findViewById(R.id.textMain);
+        textCorr = findViewById(R.id.textCorr);
+
     }
 
     // Gör så att den här metoden anropas vid ett knapptryck
     public void getEstimate(View view) {
 
-        // RegressionLine beräknar regressionslinjen på basen av våra datamängder
-        // RegressionLine är alltså en klass som vi själva definierat (och som bör vidareutvecklas!)
-        // Instansiera regressionLine t.ex. så här:
-        //RegressionLine regLine = new RegressionLine(xData, yData);
+        RegressionLine regLine = new RegressionLine(xData, yData);
+
+        yValue = Double.parseDouble(editNum.getText().toString());
+
+        double xValue = regLine.getX(yValue);
+
+        String meanStr = String.format("Skostorlek: %.2f", xValue);
+
+        textMain.setText(meanStr);
 
         // Ta emot användarens input (längd) och spara i yValue
         // Använd ett try/catch-block för NumberFormatException så att appen inte crashar
@@ -44,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         // DEL 3: Anropa regLine.get()-metoden via objektet regLine, och använd yValue som parameter
         // Skicka svaret till en TextView i layouten!
 
+       r =  regLine.getCorrelationCoefficient(yValue);
+
+       regLine.getCorrelationGrade(r);
     }
 
 }
