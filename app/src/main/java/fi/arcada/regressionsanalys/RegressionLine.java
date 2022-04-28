@@ -4,13 +4,14 @@ import java.io.Console;
 
 public class RegressionLine {
 
-    // deklarera k, m, x  och correlationCoefficient som double
+
    double value;
     double n = 26;
     double k;
     double m;
     double y;
     double x;
+    double r;
     double xSum;
     double ySum;
     double xy;
@@ -21,9 +22,8 @@ public class RegressionLine {
     double[] xVals;
     double[] yVals;
     double correlationCoefficient;
+    String corrStr;
 
-
-    // Skapa en konstruktor som tar emot data-arrays för x och y
 
     public RegressionLine(double[] xVals, double[] yVals){
         this.xVals = xVals;
@@ -62,18 +62,6 @@ public class RegressionLine {
         x = (y-m) / k;
         return x;
     }
-    // Uträkningen för k och m kan ske i konstruktorn m.h.a.
-    // formeln för minsta kvadratmetoden
-    // Del 3: uträkningen för correlationCoefficient kan också ske i konstruktorn
-    // (det är förstås också ok att ha en skild metod för uträknigarna om man vill
-    // hålla konstruktorn simpel.)
-
-    // skapa en metod getX som tar emot ett y-värde, räknar ut x
-    // m.h.a. räta linjens ekvation y=kx+m, och returnerar x
-
-    // Del 3:
-    // - skapa en getter-metod för correlationCoefficient
-    // - skapa en String-metod getCorrelationGrade() för uträkning av korrelationsgrad
 
     public double getCorrelationCoefficient(double value) {
         this.value = value;
@@ -81,7 +69,20 @@ public class RegressionLine {
         return correlationCoefficient;
     }
     public String getCorrelationGrade(double r) {
+        this.r=r;
 
+        if(r==1 || r==-1){
+            corrStr = String.format("korrelationskoefficient: %.2f (Perfekt)", r);
+        }else if(r<1.0 && r>=0.75 || r<-1.0 && r>=-0.75){
+            corrStr = String.format("korrelationskoefficient: %.2f (Hög)", r);
+        }else if(r<0.75 && r>=0.25 || r<-0.75 && r>=-0.25){
+            corrStr = String.format("korrelationskoefficient: %.2f (Måttlig)", r);
+        }else if(r<0.25 && r>0.0 || r<-0.25 && r>-0.0){
+            corrStr = String.format("korrelationskoefficient: %.2f (Låg)", r);
+        }else if(r==0.0){
+            corrStr = String.format("korrelationskoefficient: %.2f (Ingen Korrelation)", r);
+        }
+        return corrStr;
     }
 
 }

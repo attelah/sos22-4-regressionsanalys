@@ -15,6 +15,11 @@ public class MainActivity extends AppCompatActivity {
     double[] xData = { 47,  42,  43,  42,  41,  48,  46,  44,  42,  43,  39,  43,  39,  42,  44,  45,  43,  44,  45,  42,  43,  32,  48,  43,  45,  45};
     double[] yData = { 194, 188, 181, 177, 182, 197, 179, 176, 177, 188, 164, 171, 170, 180, 171, 185, 179, 182, 180, 178, 178, 148, 197, 183, 179, 198};
 
+    double[] testX = {1, 2, 3, 4};
+
+    double[] testY = {100, 110, 120, 130};
+
+
     // Deklarera yValue för längd, Denna variabel ska sedan få ett värde som hämtas från en EditText-box i appens GUI
     double yValue;
     double r;
@@ -60,7 +65,10 @@ public class MainActivity extends AppCompatActivity {
 
        r =  regLine.getCorrelationCoefficient(yValue);
 
-       regLine.getCorrelationGrade(r);
+       String corrStr = regLine.getCorrelationGrade(r);
+
+       textCorr.setText(corrStr);
+
     }
 
 }
