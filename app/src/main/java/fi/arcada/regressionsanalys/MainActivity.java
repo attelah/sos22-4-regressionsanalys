@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Deklarera yValue för längd, Denna variabel ska sedan få ett värde som hämtas från en EditText-box i appens GUI
     double yValue;
+    double xValue;
     double r;
     // Deklarera övriga variabler och objekt du behöver, t.ex. TextViews osv.
     TextView textView, textMain, textCorr;
@@ -45,29 +46,23 @@ public class MainActivity extends AppCompatActivity {
 
         RegressionLine regLine = new RegressionLine(xData, yData);
 
-        yValue = Double.parseDouble(editNum.getText().toString());
+        try {
 
-        double xValue = regLine.getX(yValue);
+        yValue = Double.parseDouble(editNum.getText().toString());
+        xValue = regLine.getX(yValue);
+        r =  regLine.getCorrelationCoefficient(yValue);
 
         String meanStr = String.format("Skostorlek: %.2f", xValue);
+        String corrStr = regLine.getCorrelationGrade(r);
 
         textMain.setText(meanStr);
+        textCorr.setText(corrStr);
 
-        // Ta emot användarens input (längd) och spara i yValue
-        // Använd ett try/catch-block för NumberFormatException så att appen inte crashar
-        // om man skriver någonting annat än siffror
-
-        // Anropa regLine.getX()-metoden via objektet regLine, och använd yValue som parameter
-        // Skicka svaret till en TextView i layouten!
-
-        // DEL 3: Anropa regLine.get()-metoden via objektet regLine, och använd yValue som parameter
-        // Skicka svaret till en TextView i layouten!
-
-       r =  regLine.getCorrelationCoefficient(yValue);
-
-       String corrStr = regLine.getCorrelationGrade(r);
-
-       textCorr.setText(corrStr);
+        } catch(NumberFormatException e){
+            String err = String.format("Ange din längd som et tal.");
+            textCorr.setText(err);
+            return;
+        }
 
     }
 

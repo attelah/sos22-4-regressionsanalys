@@ -53,7 +53,7 @@ public class RegressionLine {
 
         m = yAvg - (k*xAvg);
 
-        System.out.println(k + " " + xSum + " " +ySum+ " " + xy+ " " + xSqSum + " " +m);
+        System.out.println(k + " " + xSum + " " +ySum+ " " + xy+ " " + xSqSum + " " +m+ " " +r);
 
     }
 
@@ -65,19 +65,21 @@ public class RegressionLine {
 
     public double getCorrelationCoefficient(double value) {
         this.value = value;
-        correlationCoefficient = (n * xy - xSum * ySum) / Math.sqrt((n*xSqSum-xSqSum)*(n*ySqSum-ySqSum));
+        double sum = Math.sqrt((n*xSqSum-xSqSum)*(n*ySqSum-ySqSum));
+
+        correlationCoefficient = n * (xy) - (xSum * ySum) / sum;
         return correlationCoefficient;
     }
     public String getCorrelationGrade(double r) {
         this.r=r;
 
-        if(r==1 || r==-1){
+        if(r==1.0 || r==-1.0){
             corrStr = String.format("korrelationskoefficient: %.2f (Perfekt)", r);
         }else if(r<1.0 && r>=0.75 || r<-1.0 && r>=-0.75){
             corrStr = String.format("korrelationskoefficient: %.2f (Hög)", r);
         }else if(r<0.75 && r>=0.25 || r<-0.75 && r>=-0.25){
             corrStr = String.format("korrelationskoefficient: %.2f (Måttlig)", r);
-        }else if(r<0.25 && r>0.0 || r<-0.25 && r>-0.0){
+        }else if(r<0.25 && r>0.0 || r>-0.25 && r<-0.0){
             corrStr = String.format("korrelationskoefficient: %.2f (Låg)", r);
         }else if(r==0.0){
             corrStr = String.format("korrelationskoefficient: %.2f (Ingen Korrelation)", r);
