@@ -45,7 +45,7 @@ public class RegressionLine {
         }
 
         xSum2 = Math.pow(xSum,2);
-        //BigDecimal bigXsum = new BigDecimal(xSum);
+        BigDecimal bigXsum = new BigDecimal(xSum);
 
 
         for (int i=0; i<xVals.length; i++){
@@ -63,9 +63,9 @@ public class RegressionLine {
         xAvg = xSum / xVals.length;
         yAvg = ySum / yVals.length;
 
-        k = n*xy-xSum*ySum / n*xSqSum - xSum2;
+        k = ((n * xy) - (xSum * ySum)) / ((n * xSqSum) - Math.pow(xSum, 2));
 
-        m = yAvg - k * xAvg;
+        m = yAvg - (k * xAvg);
 
         System.out.println("xsum= "+ xSum + " xsum2= "+xSum2+ " ysum= " +ySum+ " xavg= " + xAvg+ " yavg= " + yAvg+ " xy= " +xy+ " xSqSum= " + xSqSum + " k= " + k + " m= " + +m+ " r= " +r);
 
