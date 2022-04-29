@@ -80,7 +80,9 @@ public class RegressionLine {
         double lower = ((n*xSqSum)-xSum2)*((n*ySqSum)-ySum2);
         double sqrt = Math.sqrt(lower);
         correlationCoefficient = upper / sqrt ;
+
         System.out.println("correlationCoefficient= " + correlationCoefficient + "upper" +upper+ "lower=" +lower+ "sqrt" +sqrt);
+
         return correlationCoefficient;
     }
     public String getCorrelationGrade(double r) {
