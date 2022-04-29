@@ -89,15 +89,15 @@ public class RegressionLine {
         this.r=r;
 
         if(r==1.0 || r==-1.0){
-            corrStr = String.format("korrelationskoefficient: %.2f (Perfekt)", r);
+            corrStr = String.format("Korrelationskoefficient: %.2f (Perfekt)", r);
         }else if(r<1.0 && r>=0.75 || r<-1.0 && r>=-0.75){
-            corrStr = String.format("korrelationskoefficient: %.2f (Hög)", r);
+            corrStr = String.format("Korrelationskoefficient: %.2f (Hög)", r);
         }else if(r<0.75 && r>=0.25 || r<-0.75 && r>=-0.25){
-            corrStr = String.format("korrelationskoefficient: %.2f (Måttlig)", r);
+            corrStr = String.format("Korrelationskoefficient: %.2f (Måttlig)", r);
         }else if(r<0.25 && r>0.0 || r>-0.25 && r<-0.0){
-            corrStr = String.format("korrelationskoefficient: %.2f (Låg)", r);
+            corrStr = String.format("Korrelationskoefficient: %.2f (Låg)", r);
         }else if(r==0.0){
-            corrStr = String.format("korrelationskoefficient: %.2f (Ingen Korrelation)", r);
+            corrStr = String.format("Korrelationskoefficient: %.2f (Ingen Korrelation)", r);
         }
         return corrStr;
     }

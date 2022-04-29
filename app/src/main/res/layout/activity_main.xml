@@ -9,10 +9,11 @@
 
     <EditText
         android:id="@+id/editNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="43dp"
         android:layout_marginTop="48dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +24,9 @@
         android:layout_width="317dp"
         android:layout_height="32dp"
         android:layout_marginTop="52dp"
+        android:gravity="center"
         android:text="Skriv in din längd så gissar jag din skostorlek!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,33 +35,39 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
         android:onClick="getEstimate"
         android:text="Räkna"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNum" />
+        app:layout_constraintTop_toBottomOf="@+id/editNum"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textMain"
-        android:layout_width="272dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="275dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="256dp"
+        android:gravity="center"
         android:text="Din skostorlek: "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textCorr"
-        android:layout_width="201dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="60dp"
-        android:text="Korrelationskoefficient: "
+        android:layout_width="314dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="11dp"
+        android:gravity="center_horizontal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textMain"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/textMain"
         app:layout_constraintTop_toBottomOf="@+id/textMain"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
