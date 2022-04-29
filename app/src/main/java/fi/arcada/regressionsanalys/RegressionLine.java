@@ -1,12 +1,21 @@
 package fi.arcada.regressionsanalys;
 
 import java.io.Console;
+import java.math.BigDecimal;
 
 public class RegressionLine {
 
+    double[] xTest = { 520,
+            610,
+            840,
+            540,
+            360,
+            260,
+            85
+    };
 
-   double value;
-    double n = 4;
+
+    double n = xTest.length;
     double k;
     double m;
     double y;
@@ -35,7 +44,9 @@ public class RegressionLine {
            ySum += yVals[i];
         }
 
-        xSum2 = Math.pow(xSum, 2);
+        xSum2 = Math.pow(xSum,2);
+        //BigDecimal bigXsum = new BigDecimal(xSum);
+
 
         for (int i=0; i<xVals.length; i++){
            xy += xVals[i] * yVals[i];
@@ -56,7 +67,7 @@ public class RegressionLine {
 
         m = yAvg - k * xAvg;
 
-        System.out.println("xsum= "+ xSum + " xsum2 "+xSum2+ " ysum= " +ySum+ " xavg= " + xAvg+ " yavg= " + yAvg+ " xy= " +xy+ " xSqSum= " + xSqSum + " k= " + k + " m= " + +m+ " r= " +r);
+        System.out.println("xsum= "+ xSum + " xsum2= "+xSum2+ " ysum= " +ySum+ " xavg= " + xAvg+ " yavg= " + yAvg+ " xy= " +xy+ " xSqSum= " + xSqSum + " k= " + k + " m= " + +m+ " r= " +r);
 
     }
 
