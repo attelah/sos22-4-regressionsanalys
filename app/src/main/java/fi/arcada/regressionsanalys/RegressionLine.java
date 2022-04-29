@@ -6,7 +6,7 @@ public class RegressionLine {
 
 
    double value;
-    double n = 26;
+    double n = 4;
     double k;
     double m;
     double y;
@@ -18,6 +18,7 @@ public class RegressionLine {
     double xSqSum;
     double ySqSum;
     double xAvg;
+    double xSum2;
     double yAvg;
     double[] xVals;
     double[] yVals;
@@ -34,6 +35,8 @@ public class RegressionLine {
            ySum += yVals[i];
         }
 
+        xSum2 = Math.pow(xSum, 2);
+
         for (int i=0; i<xVals.length; i++){
            xy += xVals[i] * yVals[i];
         }
@@ -49,11 +52,11 @@ public class RegressionLine {
         xAvg = xSum / xVals.length;
         yAvg = ySum / yVals.length;
 
-        k = (n*xy-xSum*ySum) / (n*xSqSum - Math.pow(xSum, 2));
+        k = n*xy-xSum*ySum / n*xSqSum - xSum2;
 
-        m = yAvg - (k*xAvg);
+        m = yAvg - k * xAvg;
 
-        System.out.println(k + " " + xSum + " " +ySum+ " " + xy+ " " + xSqSum + " " +m+ " " +r);
+        System.out.println("xsum= "+ xSum + " xsum2 "+xSum2+ " ysum= " +ySum+ " xavg= " + xAvg+ " yavg= " + yAvg+ " xy= " +xy+ " xSqSum= " + xSqSum + " k= " + k + " m= " + +m+ " r= " +r);
 
     }
 
@@ -63,11 +66,10 @@ public class RegressionLine {
         return x;
     }
 
-    public double getCorrelationCoefficient(double value) {
-        this.value = value;
-        double sum = Math.sqrt((n*xSqSum-xSqSum)*(n*ySqSum-ySqSum));
+    public double getCorrelationCoefficient() {
 
-        correlationCoefficient = n * (xy) - (xSum * ySum) / sum;
+        double sum = Math.sqrt(n*xSqSum-xSqSum)*(n*ySqSum-ySqSum);
+        correlationCoefficient = (n * xy - xSum * ySum) / sum;
         return correlationCoefficient;
     }
     public String getCorrelationGrade(double r) {
