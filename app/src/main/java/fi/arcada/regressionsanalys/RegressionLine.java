@@ -5,18 +5,10 @@ import java.math.BigDecimal;
 
 public class RegressionLine {
 
-    double[] xTest = { 520,
-            610,
-            840,
-            540,
-            360,
-            260,
-            85
-    };
 
-
-    double n = xTest.length;
+    double n;
     double k;
+    double kRounded;
     double m;
     double y;
     double x;
@@ -28,6 +20,7 @@ public class RegressionLine {
     double ySqSum;
     double xAvg;
     double xSum2;
+    double ySum2;
     double yAvg;
     double[] xVals;
     double[] yVals;
@@ -38,6 +31,7 @@ public class RegressionLine {
     public RegressionLine(double[] xVals, double[] yVals){
         this.xVals = xVals;
         this.yVals = yVals;
+        n = xVals.length;
 
         for (int i=0; i<xVals.length; i++){
            xSum += xVals[i];
@@ -45,7 +39,7 @@ public class RegressionLine {
         }
 
         xSum2 = Math.pow(xSum,2);
-        BigDecimal bigXsum = new BigDecimal(xSum);
+        ySum2 = Math.pow(ySum,2);
 
 
         for (int i=0; i<xVals.length; i++){
@@ -65,22 +59,28 @@ public class RegressionLine {
 
         k = ((n * xy) - (xSum * ySum)) / ((n * xSqSum) - Math.pow(xSum, 2));
 
-        m = yAvg - (k * xAvg);
+        kRounded = Math.round(k*1000)/1000.0;
 
-        System.out.println("xsum= "+ xSum + " xsum2= "+xSum2+ " ysum= " +ySum+ " xavg= " + xAvg+ " yavg= " + yAvg+ " xy= " +xy+ " xSqSum= " + xSqSum + " k= " + k + " m= " + +m+ " r= " +r);
+        m = yAvg - kRounded * xAvg;
+
+        System.out.println("xsum= "+ xSum + " xsum2= "+xSum2+ " ysum= " +ySum+ " xavg= " + xAvg+ " yavg= " + yAvg+ " xy= " +xy+ " xSqSum= " + xSqSum + " k= " + k + "kRounded=" +kRounded+ " m= " + +m+ " r= " +r);
 
     }
 
     double getX(double y){
         this.y = y;
-        x = (y-m) / k;
+        x = (y-m)/kRounded;
+        System.out.println("x= " + x);
         return x;
     }
 
     public double getCorrelationCoefficient() {
 
-        double sum = Math.sqrt(n*xSqSum-xSqSum)*(n*ySqSum-ySqSum);
-        correlationCoefficient = (n * xy - xSum * ySum) / sum;
+        double upper = (n * xy) - (xSum * ySum);
+        double lower = ((n*xSqSum)-xSum2)*((n*ySqSum)-ySum2);
+        double sqrt = Math.sqrt(lower);
+        correlationCoefficient = upper / sqrt ;
+        System.out.println("correlationCoefficient= " + correlationCoefficient + "upper" +upper+ "lower=" +lower+ "sqrt" +sqrt);
         return correlationCoefficient;
     }
     public String getCorrelationGrade(double r) {
